@@ -1,0 +1,16 @@
+string $result = `promptDialog
+	-title "Add Suffix"
+	-message "Enter Suffix:"
+	-button "OK" -button "Cancel"
+	-defaultButton "OK" -cancelButton "Cancel"
+	-dismissString "Cancel"`;
+
+if ($result == "OK"){
+	$text = `promptDialog -query -text`;
+	string $names[] = `ls -selection`;
+	string $item;
+	for($item in $names){
+		rename ($item)($item + $text);
+	}
+}
+
